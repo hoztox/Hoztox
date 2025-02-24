@@ -1,0 +1,668 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Hoztox Dashboard </title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Favicon-->
+    {% load static %}
+    <!-- project css file  -->
+    <link rel="stylesheet" href="{% static 'assets/css/my-task.style.min.css' %}">
+</head>
+
+<body data-mytask="theme-indigo">
+
+    <div id="mytask-layout">
+
+        <!-- sidebar -->
+        <!-- ......................................................... -->
+        <!-- second -->
+        <div class="sidebar px-4 py-4 py-md-5 me-0">
+            <div class="d-flex flex-column h-100">
+                <a href="" class="mb-0 brand-icon hoztox-logo">
+                    <img src="{% static 'assets/images/hoztox-logo.svg' %}">
+                </a>
+                <!-- Menu: main ul -->
+
+                <ul class="menu-list flex-grow-1 mt-3">
+                    <li><a class="m-link" href=" "><i class="icofont-home fs-5"></i>
+                            <span>Dashboard</span></a></li>
+                    <li class="collapsed">
+                        <a class="m-link" data-bs-toggle="collapse" data-bs-target="#project-Components" href="#">
+                            <i class="icofont-briefcase"></i><span>Projects</span> <span
+                                class="arrow icofont-dotted-down ms-auto text-end fs-5"></span></a>
+                        <!-- Menu: Sub menu ul -->
+                        <ul class="sub-menu collapse" id="project-Components">
+                            <li><a class="ms-link" href="{% url 'project_list' %}"><span>Projects</span></a></li>
+                            <li><a class="ms-link" href="{% url 'tasks' %}"><span>Tasks</span></a></li>
+                             
+                        </ul>
+                    </li>
+                    <li class="collapsed">
+                        <a class="m-link" data-bs-toggle="collapse" data-bs-target="#client-Components" href="#"><i
+                                class="icofont-user-male"></i> <span>Our Clients</span> <span
+                                class="arrow icofont-dotted-down ms-auto text-end fs-5"></span></a>
+                        <!-- Menu: Sub menu ul -->
+                        <ul class="sub-menu collapse" id="client-Components">
+                            <li><a class="ms-link" href="{% url 'clients' %}"> <span>Clients</span></a></li>
+                             
+                        </ul>
+                    </li>
+                    <li class="collapsed">
+                        <a class="m-link" data-bs-toggle="collapse" data-bs-target="#emp-Components" href="#"><i
+                                class="icofont-users-alt-5"></i> <span>Employees</span> <span
+                                class="arrow icofont-dotted-down ms-auto text-end fs-5"></span></a>
+                        <!-- Menu: Sub menu ul -->
+                        <ul class="sub-menu collapse" id="emp-Components">
+                            <li><a class="ms-link" href="{% url 'employee_list' %}"> <span>Members</span></a></li>
+                           
+                        </ul>
+                    </li>
+                </ul>
+                <!-- Menu: menu collepce btn -->
+                <button type="button" class="btn btn-link sidebar-mini-btn text-light">
+                    <span class="ms-2"><i class="icofont-bubble-right"></i></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- ................................................................ -->
+        <!-- main body area -->
+        <div class="main px-lg-4 px-md-4">
+
+
+
+            <!-- ...................................... -->
+            <!-- first header of profile  -->
+            <div class="header">
+                <nav class="navbar py-4">
+                    <div class="container-xxl">
+                        <!-- header rightbar icon -->
+                        <div class="h-right d-flex align-items-center mr-5 mr-lg-0 order-1">
+                            <div class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center">
+                                <div class="u-info me-2">
+                                    <p class="mb-0 text-end line-height-sm "><span
+                                            class="font-weight-bold">Rasheed</span></p>
+                                    <small>Admin Profile</small>
+                                </div>
+                                <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button"
+                                    data-bs-toggle="dropdown" data-bs-display="static">
+                                    <img class="avatar lg rounded-circle img-thumbnail"
+                                        src="{% static 'assets/images/Rasheed-12.webp' %}" alt="profile">
+                                </a>
+                                <div
+                                    class="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-end p-0 m-0">
+                                    <div class="card border-0 w280">
+                                        <div class="card-body pb-0">
+                                            <div class="d-flex py-1">
+                                                <img class="avatar rounded-circle" src="assets/images/profile_av.png"
+                                                    alt="profile">
+                                                <div class="flex-fill ms-3">
+                                                    <p class="mb-0"><span class="font-weight-bold">Dylan Hunter</span>
+                                                    </p>
+                                                    <small class="">Dylan.hunter@gmail.com</small>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <hr class="dropdown-divider border-dark">
+                                            </div>
+                                        </div>
+                                        <div class="list-group m-2 ">
+                                            <a href="task.html"
+                                                class="list-group-item list-group-item-action border-0 "><i
+                                                    class="icofont-tasks fs-5 me-3"></i>My Task</a>
+                                            <a href="members.html"
+                                                class="list-group-item list-group-item-action border-0 "><i
+                                                    class="icofont-ui-user-group fs-6 me-3"></i>members</a>
+                                            <a href="ui-elements/auth-signin.html"
+                                                class="list-group-item list-group-item-action border-0 "><i
+                                                    class="icofont-logout fs-6 me-3"></i>Signout</a>
+                                            <div>
+                                                <hr class="dropdown-divider border-dark">
+                                            </div>
+                                            <a href="ui-elements/auth-signup.html"
+                                                class="list-group-item list-group-item-action border-0 "><i
+                                                    class="icofont-contact-add fs-5 me-3"></i>Add personal account</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="px-md-1">
+                                <a href="#offcanvas_setting" data-bs-toggle="offcanvas" aria-expanded="false"
+                                    title="template setting">
+                                    <svg class="svg-stroke" xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                                        viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z">
+                                        </path>
+                                        <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- menu toggler -->
+                        <button class="navbar-toggler p-0 border-0 menu-toggle order-3" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#mainHeader">
+                            <span class="fa fa-bars"></span>
+                        </button>
+
+                        <!-- main menu Search-->
+                        <div class="order-0 col-lg-4 col-md-4 col-sm-12 col-12 mb-3 mb-md-0 ">
+                            <div class="input-group flex-nowrap input-group-lg">
+                                <button type="button" class="input-group-text" id="addon-wrapping"><i
+                                        class="fa fa-search"></i></button>
+                                <input type="search" class="form-control" placeholder="Search" aria-label="search"
+                                    aria-describedby="addon-wrapping" id="searchInput">
+                                <button type="button" class="input-group-text add-member-top" id="addon-wrappingone"
+                                    data-bs-toggle="modal" data-bs-target="#addUser"><i class="fa fa-plus"></i></button>
+                            </div>
+                        </div>
+
+                        <div id="searchResults"></div>
+
+
+
+                    </div>
+                </nav>
+            </div>
+
+            <!-- ...................................... -->
+
+
+
+
+            <!-- Body: Body -->
+            <!-- <div class="body d-flex py-lg-3 py-md-2">
+                {% if messages %}
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    {% for message in messages %}
+                    <p>{{ message }}</p>
+                    {% endfor %}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endif %}
+            </div> -->
+
+
+            <!-- <script>
+                document.addEventListener("DOMContentLoaded", function () {
+
+                    if (document.querySelector('.alert')) {
+                        setTimeout(function () {
+                            document.querySelector('.alert').classList.remove('fade');
+                            document.querySelector('.alert').classList.add('show');
+                        }, 500);
+                    }
+                });
+            </script> -->
+
+            <div class="container-xxl">
+                <div class="row clearfix">
+                    <div class="col-md-12">
+                        <div class="card border-0 mb-4 no-bg">
+                            <div
+                                class="card-header py-3 px-0 d-flex align-items-center  justify-content-between border-bottom">
+                                <h3 class=" fw-bold flex-fill mb-0">Clients</h3>
+                                <div class="col-auto d-flex">
+
+                                    <button type="button" class="btn btn-dark ms-1 " data-bs-toggle="modal"
+                                        data-bs-target="#createproject"><i class="icofont-plus-circle me-2 fs-6"></i>Add
+                                        Client</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- Row End -->
+
+                <!-- Client List -->
+                <div class="row g-3 row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-2 row-cols-xxl-2 row-deck py-1 pb-4"
+                    id="clientList">
+                    {% for client in clients %}
+                    <div class="col">
+                        <div class="card teacher-card">
+                            <div class="card-body d-flex">
+                                <div class="profile-av pe-xl-4 pe-md-2 pe-sm-4 pe-4 text-center w220">
+                                    {% if client.logo %}
+                                    <img src="{{ client.logo.url }}" alt=""
+                                        class="avatar xl rounded-circle img-thumbnail shadow-sm">
+                                    {% else %}
+                                    <img src="/static/default-logo.png" alt="No Logo"
+                                        class="avatar xl rounded-circle img-thumbnail shadow-sm">
+                                    {% endif %}
+                                    <div
+                                        class="about-info d-flex align-items-center mt-1 justify-content-center flex-column">
+                                        <h6 class="mb-0 fw-bold d-block fs-6 mt-2">{{ client.contact_person }}</h6>
+                                        <div class="btn-group mt-2" role="group" aria-label="Basic outlined example">
+                                            <button type="button" class="btn btn-outline-secondary edit-btn"
+                                                data-bs-toggle="modal" data-bs-target="#editproject"
+                                                data-client-id="{{ client.id }}"
+                                                data-client-name="{{ client.company_name }}"
+                                                data-client-contact="{{ client.contact_person }}"
+                                                data-client-service="{{ client.service }}"
+                                                data-client-description="{{ client.description }}"
+                                                data-client-email="{{ client.email }}"
+                                                data-client-phone="{{ client.phone }}"
+                                                data-client-logo="{% if client.logo %}{{ client.logo.url }}{% else %}{% endif %}">
+                                                <i class="icofont-edit text-success"></i>
+
+                                            </button>
+                                            <button type="button" class="btn btn-outline-secondary delete-btn"
+                                                data-bs-toggle="modal" data-bs-target="#deleteproject"
+                                                data-client-id="{{ client.id }}">
+                                                <i class="icofont-ui-delete text-danger"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="teacher-info border-start ps-xl-4 ps-md-3 ps-sm-4 ps-4 w-100">
+                                    <h6 class="mb-0 mt-2 fw-bold d-block fs-6">{{ client.company_name }}</h6>
+                                    <span class="py-1 fw-bold small-11 mb-0 mt-1 text-muted">{{ client.service }}</span>
+                                    <div class="video-setting-icon mt-3 pt-3 border-top">
+                                        <p>{{ client.description }}</p>
+                                    </div>
+                                    <div class="d-flex flex-wrap align-items-center ct-btn-set">
+                                        <a href="{% url 'client_profile' client.id %}" class="btn btn-dark btn-sm mt-1">
+                                            <i class="icofont-invisible me-2 fs-6"></i> Profile
+                                        </a>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+
+            </div>
+        </div>
+        <!-- #want to add here  -->
+
+
+
+        <!-- Add Client Modal -->
+        <div class="modal fade" id="createproject" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title fw-bold" id="createprojectlLabel">Add Client</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="id_contact_person" class="form-label">Contact Person</label>
+                                <input type="text"
+                                    class="form-control {% if form.contact_person.errors %}is-invalid{% endif %}"
+                                    id="id_contact_person" name="contact_person" placeholder="Contact Person">
+                                {% for error in form.contact_person.errors %}
+                                <div class="invalid-feedback">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_company_name" class="form-label">Company Name</label>
+                                <input type="text"
+                                    class="form-control {% if form.company_name.errors %}is-invalid{% endif %}"
+                                    id="id_company_name" name="company_name" placeholder="Company Name">
+                                {% for error in form.company_name.errors %}
+                                <div class="invalid-feedback">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_service" class="form-label">Service</label>
+                                <input type="text"
+                                    class="form-control {% if form.service.errors %}is-invalid{% endif %}"
+                                    id="id_service" name="service" placeholder="Service">
+                                {% for error in form.service.errors %}
+                                <div class="invalid-feedback">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_logo" class="form-label">Update Logo</label>
+                                <input type="file" class="form-control {% if form.logo.errors %}is-invalid{% endif %}"
+                                    id="id_logo" name="logo">
+                                {% for error in form.logo.errors %}
+                                <div class="invalid-feedback">{{ error }}</div>
+                                {% endfor %}
+                            </div>
+
+                            <div class="row g-3 mb-3">
+                                <div class="col">
+                                    <label for="id_email" class="form-label">Email ID</label>
+                                    <input type="email"
+                                        class="form-control {% if form.email.errors %}is-invalid{% endif %}"
+                                        id="id_email" name="email" placeholder="Email">
+                                    {% for error in form.email.errors %}
+                                    <div class="invalid-feedback">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                                <div class="col">
+                                    <label for="id_phone" class="form-label">Phone</label>
+                                    <input type="text"
+                                        class="form-control {% if form.phone.errors %}is-invalid{% endif %}"
+                                        id="id_phone" name="phone" placeholder="Phone">
+                                    {% for error in form.phone.errors %}
+                                    <div class="invalid-feedback">{{ error }}</div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_description" class="form-label">Description (optional)</label>
+                                <textarea class="form-control" id="id_description" name="description" rows="3"
+                                    placeholder="Description">{{ form.description.value }}</textarea>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Client Modal -->
+
+        <!-- Add Client Modal (for deletion) -->
+        <div class="modal fade" id="deleteproject" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title  fw-bold" id="deleteprojectLabel">Delete item Permanently?</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body justify-content-center flex-column d-flex">
+                        <i class="icofont-ui-delete text-danger display-2 text-center mt-2"></i>
+                        <p class="mt-4 fs-5 text-center">You can only delete this item Permanently</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <form method="POST"
+                            action="{% if client.id %}{% url 'delete_client' client.id %}{% else %}# {% endif %}"
+                            id="deleteForm">
+
+
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger color-fff">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal for adding or editing a client -->
+
+        <div class="modal fade" id="editproject" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title fw-bold" id="clientModalLabel">
+                            Edit Client
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="{% url 'client_update' client_id|default:0 %}"
+                            enctype="multipart/form-data">
+
+
+
+                            {% csrf_token %}
+                            <input type="hidden" name="client_id" value="{{ client_id }}">
+
+                            <!-- Logo Display Only -->
+                            <div class="mb-3">
+                                <label for="client_logo" class="form-label">Company Logo</label>
+                                <div>
+                                    {% if client.logo %}
+                                    <img src="{{ client.logo.url }}" alt="Client Logo"
+                                        class="avatar xl rounded-circle img-thumbnail shadow-sm">
+                                    {% else %}
+                                    <img src="{% static 'assets/images/default-logo.png' %}" alt="Default Logo"
+                                        class="avatar xl rounded-circle img-thumbnail shadow-sm">
+                                    {% endif %}
+
+
+
+                                </div>
+                            </div>
+                            <!-- Logo Input -->
+                            <div class="mb-3">
+                                <label for="id_logo" class="form-label">Upload New Logo</label>
+                                <input type="file" class="form-control" id="id_logo" name="logo">
+                            </div>
+
+                            <!-- Contact Person -->
+                            <div class="mb-3">
+                                <label for="id_contact_person" class="form-label">Contact Person</label>
+                                <input type="text" class="form-control" id="id_contact_person" name="contact_person"
+                                    placeholder="Contact Person"
+                                    value="{{ form.contact_person.value|default_if_none:'' }}">
+                            </div>
+
+                            <!-- Company Name -->
+                            <div class="mb-3">
+                                <label for="id_company_name" class="form-label">Company Name</label>
+                                <input type="text" class="form-control" id="id_company_name" name="company_name"
+                                    placeholder="Company Name" value="{{ form.company_name.value|default_if_none:'' }}">
+                            </div>
+
+                            <!-- Service -->
+                            <div class="mb-3">
+                                <label for="id_service" class="form-label">Service</label>
+                                <input type="text" class="form-control" id="id_service" name="service"
+                                    placeholder="Service" value="{{ form.service.value|default_if_none:'' }}">
+                            </div>
+
+                            <!-- Email and Phone -->
+                            <div class="row g-3 mb-3">
+                                <div class="col">
+                                    <label for="id_email" class="form-label">Email ID</label>
+                                    <input type="email" class="form-control" id="id_email" name="email"
+                                        placeholder="Email" value="{{ form.email.value|default_if_none:'' }}">
+                                </div>
+                                <div class="col">
+                                    <label for="id_phone" class="form-label">Phone</label>
+                                    <input type="text" class="form-control" id="id_phone" name="phone"
+                                        placeholder="Phone" value="{{ form.phone.value|default_if_none:'' }}">
+                                </div>
+                            </div>
+
+                            <!-- Description -->
+                            <div class="mb-3">
+                                <label for="id_description" class="form-label">Description (optional)</label>
+                                <textarea class="form-control" id="id_description" name="description" rows="3"
+                                    placeholder="Description">{{ form.description.value|default_if_none:'' }}</textarea>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <!-- Jquery Core Js -->
+        <script src="{% static 'assets/bundles/libscripts.bundle.js' %}"></script>
+
+        <!-- Jquery Page Js -->
+        <script src="../js/template.js"></script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                document.querySelectorAll(".edit-btn").forEach(button => {
+                    button.addEventListener("click", function () {
+                        let modal = document.getElementById("editproject");
+
+
+                        modal.querySelector("#id_contact_person").value = this.dataset.clientContact;
+                        modal.querySelector("#id_company_name").value = this.dataset.clientName;
+                        modal.querySelector("#id_service").value = this.dataset.clientService;
+                        modal.querySelector("#id_description").value = this.dataset.clientDescription;
+                        modal.querySelector("#id_email").value = this.dataset.clientEmail;
+                        modal.querySelector("#id_phone").value = this.dataset.clientPhone;
+                    });
+                });
+            });
+
+            document.querySelectorAll('.edit-btn').forEach(button => {
+                button.addEventListener('click', function (event) {
+
+                    const clientData = {
+                        clientId: event.currentTarget.getAttribute('data-client-id'),
+                        clientName: event.currentTarget.getAttribute('data-client-name'),
+                        clientContact: event.currentTarget.getAttribute('data-client-contact'),
+                        clientService: event.currentTarget.getAttribute('data-client-service'),
+                        clientDescription: event.currentTarget.getAttribute('data-client-description'),
+                        clientEmail: event.currentTarget.getAttribute('data-client-email'),
+                        clientPhone: event.currentTarget.getAttribute('data-client-phone'),
+                        clientLogo: event.currentTarget.getAttribute('data-client-logo')
+                    };
+
+
+                    console.log(clientData);
+                });
+            });
+
+            document.querySelectorAll('.edit-btn').forEach(button => {
+                button.addEventListener('click', function (event) {
+
+                    const clientData = {
+                        clientId: event.currentTarget.getAttribute('data-client-id'),
+                        clientName: event.currentTarget.getAttribute('data-client-name'),
+                        clientContact: event.currentTarget.getAttribute('data-client-contact'),
+                        clientService: event.currentTarget.getAttribute('data-client-service'),
+                        clientDescription: event.currentTarget.getAttribute('data-client-description'),
+                        clientEmail: event.currentTarget.getAttribute('data-client-email'),
+                        clientPhone: event.currentTarget.getAttribute('data-client-phone'),
+                        clientLogo: event.currentTarget.getAttribute('data-client-logo')
+                    };
+
+
+                    console.log(clientData);
+
+
+                    document.getElementById('id_contact_person').value = clientData.clientContact;
+                    document.getElementById('id_company_name').value = clientData.clientName;
+                    document.getElementById('id_service').value = clientData.clientService;
+                    document.getElementById('id_email').value = clientData.clientEmail;
+                    document.getElementById('id_phone').value = clientData.clientPhone;
+                    document.getElementById('id_description').value = clientData.clientDescription;
+
+
+                    const logoImage = document.querySelector('#editproject .modal-body img');
+                    if (clientData.clientLogo) {
+                        logoImage.src = clientData.clientLogo;
+                    } else {
+                        logoImage.src = '/static/assets/images/default-logo.png';
+                    }
+
+
+                    document.querySelector('input[name="client_id"]').value = clientData.clientId;
+                });
+            });
+
+            document.addEventListener("DOMContentLoaded", function () {
+
+                const editButtons = document.querySelectorAll(".edit-btn");
+
+                editButtons.forEach(button => {
+                    button.addEventListener("click", function () {
+
+                        const clientId = this.getAttribute("data-client-id");
+                        const clientName = this.getAttribute("data-client-name");
+                        const clientContact = this.getAttribute("data-client-contact");
+                        const clientService = this.getAttribute("data-client-service");
+                        const clientEmail = this.getAttribute("data-client-email");
+                        const clientPhone = this.getAttribute("data-client-phone");
+                        const clientLogo = this.getAttribute("data-client-logo");
+
+
+                        console.log("Editing Client:", {
+                            clientId, clientName, clientContact, clientService, clientEmail, clientPhone, clientLogo
+                        });
+
+
+                        document.getElementById("id_contact_person").value = clientContact || "";
+                        document.getElementById("id_company_name").value = clientName || "";
+                        document.getElementById("id_service").value = clientService || "";
+                        document.getElementById("id_email").value = clientEmail || "";
+                        document.getElementById("id_phone").value = clientPhone || "";
+
+
+                        document.querySelector("#editproject form").action = `/client/update/${clientId}/`;
+
+
+                        if (clientLogo) {
+                            document.querySelector("#client_logo_preview").src = clientLogo;
+                        } else {
+                            document.querySelector("#client_logo_preview").src = "/static/assets/images/default-logo.png";
+                        }
+                    });
+                });
+            });
+
+            document.addEventListener('DOMContentLoaded', function () {
+                document.querySelectorAll('.delete-btn').forEach(button => {
+                    button.addEventListener('click', function () {
+                        const clientId = this.getAttribute('data-client-id');
+                        const deleteForm = document.querySelector('#deleteForm');
+
+
+                        deleteForm.action = "{% url 'delete_client' 0 %}".replace('0', clientId);
+                    });
+                });
+            });
+
+            document.addEventListener("DOMContentLoaded", function () {
+                const searchInput = document.getElementById('searchInput');
+                const clientList = document.getElementById('clientList');
+
+                searchInput.addEventListener('input', function () {
+                    const searchText = searchInput.value.toLowerCase();
+
+
+                    const clients = clientList.querySelectorAll('.col');
+                    clients.forEach(client => {
+                        const companyName = client.querySelector('.teacher-info h6').textContent.toLowerCase();
+                        const contactPerson = client.querySelector('.profile-av h6').textContent.toLowerCase();
+
+
+                        if (companyName.includes(searchText) || contactPerson.includes(searchText)) {
+                            client.style.display = 'block';
+                        } else {
+                            client.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+
+
+
+
+        </script>
+
+
+</body>
+
+<!-- Mirrored from pixelwibes.com/template/my-task/html/dist/ourclients.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 12 Feb 2025 05:57:59 GMT -->
+
+</html>

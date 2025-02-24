@@ -1,0 +1,1083 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Hoztox Dashboard </title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Favicon-->
+
+    {% load static %}
+    <!-- project css file  -->
+    <link rel="stylesheet" href="{% static 'assets/css/my-task.style.min.css' %}">
+</head>
+
+<body data-mytask="theme-indigo">
+
+    <div id="mytask-layout">
+
+        <!-- sidebar -->
+        <!-- 88888888888888888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+        <!-- sidebar -->
+        <div class="sidebar px-4 py-4 py-md-5 me-0">
+            <div class="d-flex flex-column h-100">
+                <a href="" class="mb-0 brand-icon hoztox-logo">
+                    <img src="{% static 'assets/images/hoztox-logo.svg' %}">
+                </a>
+                <!-- Menu: main ul -->
+
+                <ul class="menu-list flex-grow-1 mt-3">
+                    <li><a class="m-link" href=" "><i class="icofont-home fs-5"></i> <span>Dashboard</span></a></li>
+                    <li class="collapsed">
+                        <a class="m-link" data-bs-toggle="collapse" data-bs-target="#project-Components" href="#">
+                            <i class="icofont-briefcase"></i><span>Projects</span> <span
+                                class="arrow icofont-dotted-down ms-auto text-end fs-5"></span></a>
+                        <!-- Menu: Sub menu ul -->
+                        <ul class="sub-menu collapse" id="project-Components">
+                            <li><a class="ms-link" href="projects"><span>Projects</span></a></li>
+                            <li><a class="ms-link" href="{% url 'tasks' %}"><span>Tasks</span></a></li>
+                            <!-- <li><a class="ms-link" href="timesheet.html"><span>Timesheet</span></a></li> -->
+                            <li><a class="ms-link" href="{% url 'leader' %}"><span>Leaders</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="collapsed">
+                        <a class="m-link" data-bs-toggle="collapse" data-bs-target="#client-Components" href="#"><i
+                                class="icofont-user-male"></i> <span>Our Clients</span> <span
+                                class="arrow icofont-dotted-down ms-auto text-end fs-5"></span></a>
+                        <!-- Menu: Sub menu ul -->
+                        <ul class="sub-menu collapse" id="client-Components">
+                            <li><a class="ms-link" href="ourclients.html"> <span>Clients</span></a></li>
+                            <li><a class="ms-link" href="profile.html"> <span>Client Profile</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="collapsed">
+                        <a class="m-link" data-bs-toggle="collapse" data-bs-target="#emp-Components" href="#"><i
+                                class="icofont-users-alt-5"></i> <span>Employees</span> <span
+                                class="arrow icofont-dotted-down ms-auto text-end fs-5"></span></a>
+                        <!-- Menu: Sub menu ul -->
+                        <ul class="sub-menu collapse" id="emp-Components">
+                            <li><a class="ms-link" href="members.html"> <span>Members</span></a></li>
+                            <li><a class="ms-link" href="employee-profile.html"> <span>Members Profile</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- Menu: menu collepce btn -->
+                <button type="button" class="btn btn-link sidebar-mini-btn text-light">
+                    <span class="ms-2"><i class="icofont-bubble-right"></i></span>
+                </button>
+            </div>
+        </div>
+        <!-- sidebar -->
+
+        <!-- main body area -->
+        <div class="main px-lg-4 px-md-4">
+
+            <!-- Body: Header -->
+            <!-- fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff -->
+            <!-- Body: Header -->
+
+            <!-- Body: Body -->
+
+
+
+
+
+
+            <div class="body d-flex py-lg-3 py-md-2">
+                <div class="container-xxl">
+                    <div class="row align-items-center">
+                        <div class="border-0 mb-4">
+                            <div
+                                class="card-header p-0 no-bg bg-transparent d-flex align-items-center px-0 justify-content-between border-bottom flex-wrap">
+
+                                <div class="d-flex py-2 project-tab flex-wrap w-100 justify-content-between">
+
+                                    <ul class="nav nav-tabs tab-body-header rounded ms-3 prtab-set w-sm-100"
+                                        role="tablist">
+                                        <li><button type="button" class="btn btn-dark  w-sm-100 creatprojectbtn"
+                                                data-bs-toggle="modal" data-bs-target="#createproject"><i
+                                                    class="icofont-plus-circle me-2 fs-6"></i>Create Project</button>
+                                        </li>
+                                        <li class="nav-item w-auto"><a class="nav-link active" data-bs-toggle="tab"
+                                                href="#All-list" role="tab">All Projects</a></li>
+                                        <li class="nav-item w-auto"><a class="nav-link" data-bs-toggle="tab"
+                                                href="#Approval-list" role="tab">Up Comming Projects</a></li>
+                                        <li class="nav-item w-auto"><a class="nav-link" data-bs-toggle="tab"
+                                                href="#Started-list" role="tab">On Going UI Projects</a></li>
+                                        <li class="nav-item w-auto"><a class="nav-link" data-bs-toggle="tab"
+                                                href="#Started-list" role="tab">On Going Dev Projects</a></li>
+
+                                        <li class="nav-item w-auto"><a class="nav-link" data-bs-toggle="tab"
+                                                href="#Completed-list" role="tab">Completed Projects</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- Row end  -->
+                    <div class="row align-items-center">
+                        <div class="col-lg-12 col-md-12 flex-column">
+                            <div class="tab-content mt-4">
+                                <div class="tab-pane fade show active" id="All-list">
+                                    <div class="row g-3 gy-5 py-3 row-deck">
+
+                                        <!-- project display section -->
+
+
+                                        {% for project in projects %}
+                                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-12 col-sm-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-between mt-1">
+                                                        <div class="lesson_name">
+                                                            <div class="project-logo">
+                                                                {% if project.logo %}
+                                                                <img src="{{ project.logo.url }}"
+                                                                    alt="{{ project.name }}">
+                                                                {% else %}
+                                                                <img src="{% static 'assets/images/projects/default.png' %}"
+                                                                    alt="Default Logo">
+                                                                {% endif %}
+                                                            </div>
+                                                            <span
+                                                                class="small text-muted fw-bold">{{project.client.company_name}}
+                                                            </span>
+
+                                                            <h6 class="mb-0 fw-bold fs-6 mb-2">{{ project.category }}
+                                                            </h6>
+                                                        </div>
+
+                                                        <div class="">
+                                                            <div class="btn-group" role="group"
+                                                                aria-label="Basic outlined example">
+                                                                <button type="button"
+                                                                    class="btn btn-outline-secondary edit-btn"
+                                                                    data-bs-toggle="modal" data-bs-target="#editproject"
+                                                                    data-project-id="{{ project.id }}"
+                                                                    data-project-name="{{ project.name }}"
+                                                                    data-project-category="{{ project.category }}"
+                                                                    data-project-client="{{ project.client.company_name }}"
+                                                                    data-project-lead="{{ project.project_lead }}"
+                                                                    data-project-logo="{% if project.logo %}{{ project.logo.url }}{% else %}{% endif %}"
+                                                                    data-project-start-date="{{ project.start_date|date:'Y-m-d' }}"
+                                                                    data-project-end-date="{{ project.end_date|date:'Y-m-d' }}"
+                                                                    data-project-priority="{{ project.priority }}"
+                                                                    data-project-description="{{ project.description }}">
+                                                                    <i class="icofont-edit text-success"></i>
+                                                                </button>
+                                                                <script>
+
+
+
+
+                                                                </script>
+
+
+                                                                <button type="button"
+                                                                    class="btn btn-outline-secondary delete-btn"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#deleteproject"
+                                                                    data-client-id="{{ project.id }}">
+                                                                    <i class="icofont-ui-delete text-danger"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="avatar-list avatar-list-stacked pt-2">
+                                                            <img class="avatar rounded-circle sm"
+                                                                src="{% static 'assets/images/xs/avatar2.jpg' %}"
+                                                                alt="">
+                                                            <img class="avatar rounded-circle sm"
+                                                                src="{% static 'assets/images/xs/avatar1.jpg' %}"
+                                                                alt="">
+                                                            <img class="avatar rounded-circle sm"
+                                                                src="{% static 'assets/images/xs/avatar3.jpg' %}"
+                                                                alt="">
+                                                            <img class="avatar rounded-circle sm"
+                                                                src="{% static 'assets/images/xs/avatar4.jpg' %}"
+                                                                alt="">
+                                                            <img class="avatar rounded-circle sm"
+                                                                src="{% static 'assets/images/xs/avatar8.jpg' %}"
+                                                                alt="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row g-2 pt-4">
+                                                        <div class="col-6">
+                                                            <div class="d-flex align-items-center">
+                                                                <i class="icofont-calendar"></i>
+                                                                <span class="ms-2">{{ project.start_date|default:"N/A"}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="d-flex align-items-center">
+                                                                <i class="icofont-calendar"></i>
+                                                                <span class="ms-2">{{ project.end_date|default:"N/A"}}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="d-flex align-items-center">
+                                                                <i class="icofont-user"></i>
+                                                                <span class="ms-2">
+                                                                    {{ project.project_lead|default:"Unknown" }}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="d-flex align-items-center">
+                                                                <i class="icofont-vector-path"></i>
+                                                                <span class="ms-2">
+                                                                    <span
+                                                                        class="badge {% if project.status == 'On Going UI' %}bg-warning{% elif project.status == 'On Going Webdevelopment' %}bg-primary{% elif project.status == 'Up Coming' %}bg-warning{% elif project.status == 'Completed' %}bg-success{% else %}bg-secondary{% endif %}">
+                                                                        {{ project.status|default:"Up Coming" }}
+                                                                    </span>
+                                                                    <i class="icofont-edit text-success status-edit-icon"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#editStatusModal"
+                                                                        data-project-id="{{ project.id }}"></i>
+                                                                    <script>
+
+
+                                                                    </script>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="dividers-block"></div>
+                                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                                        <h4 class="small fw-bold mb-0">Progress</h4>
+                                                        <span class="small light-danger-bg p-1 rounded">
+                                                            <i class="icofont-ui-clock"></i> {{ project.days_remaining }} Days Left
+                                                           
+                                                        </span>
+                                                    </div>
+
+                                                    <div class="progress" style="height: 8px;">
+                                                        {% if project.status == 'Up Coming' %}
+                                                        <!-- No progress (all bars are empty) -->
+                                                        <div class="progress-bar bg-light" role="progressbar"
+                                                            style="width: 33%" aria-valuenow="0" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-light ms-1" role="progressbar"
+                                                            style="width: 33%" aria-valuenow="0" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-light ms-1" role="progressbar"
+                                                            style="width: 33%" aria-valuenow="0" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+
+                                                        {% elif project.status == 'On Going UI' %}
+                                                        <!-- Stage 1: First bar filled -->
+                                                        <div class="progress-bar bg-secondary" role="progressbar"
+                                                            style="width: 33%" aria-valuenow="33" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-light ms-1" role="progressbar"
+                                                            style="width: 33%" aria-valuenow="0" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-light ms-1" role="progressbar"
+                                                            style="width: 33%" aria-valuenow="0" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+
+                                                        {% elif project.status == 'On Going Dev' %}
+                                                        <!-- Stage 2: Two bars filled -->
+                                                        <div class="progress-bar bg-secondary" role="progressbar"
+                                                            style="width: 33%" aria-valuenow="33" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-secondary ms-1" role="progressbar"
+                                                            style="width: 33%" aria-valuenow="33" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-light ms-1" role="progressbar"
+                                                            style="width: 33%" aria-valuenow="0" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+
+                                                        {% elif project.status == 'Completed' %}
+                                                        <!-- Stage 3: All three bars filled -->
+                                                        <div class="progress-bar bg-secondary" role="progressbar"
+                                                            style="width: 33%" aria-valuenow="33" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-secondary ms-1" role="progressbar"
+                                                            style="width: 33%" aria-valuenow="33" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                        <div class="progress-bar bg-secondary ms-1" role="progressbar"
+                                                            style="width: 33%" aria-valuenow="33" aria-valuemin="0"
+                                                            aria-valuemax="100"></div>
+                                                        {% endif %}
+                                                    </div>
+
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% empty %}
+                                        <p>No projects available.</p>
+                                        {% endfor %}
+
+
+
+                                        <!-- project display section -->
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  -->
+
+        <!-- Create Project Modal -->
+        <div class="modal fade" id="createproject" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title fw-bold" id="createprojectlLabel">Create Project</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="createProjectForm" method="POST" enctype="multipart/form-data">
+
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="projectName" class="form-label">Project Name</label>
+                                <input type="text" class="form-control" id="projectName" name="projectName"
+                                    placeholder="Explain what the Project Name">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Project Category</label>
+                                <select class="form-select" id="projectCategory" name="projectCategory"
+                                    aria-label="Select Project Category">
+                                    <option selected value="UI/UX Design">UI/UX Design</option>
+                                    <option value="Website Design">Website Design</option>
+                                    <option value="Web App Development">Web App Development</option>
+                                    <option value="SEO">SEO</option>
+                                    <option value="Social Media">Social Media</option>
+                                    <option value="Backend Development">Backend Development</option>
+                                    <option value="Digital Marketing">Digital Marketing</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Client</label>
+                                <select class="form-select" id="client-select" name="client">
+                                    <option value="">Select Client</option>
+                                </select>
+                                <script>
+                                    fetch('{% url "get_clients" %}')
+                                        .then(response => response.json())
+                                        .then(clients => {
+                                            const select = document.getElementById('client-select');
+                                            clients.forEach(client => {
+                                                const option = document.createElement('option');
+                                                option.value = client.id;
+                                                option.textContent = client.company_name;
+                                                select.appendChild(option);
+                                            });
+                                        })
+                                        .catch(error => console.error('Error fetching clients:', error));
+                                </script>
+                            </div>
+                            <div class="mb-3">
+                                <label for="projectLead" class="form-label">Project Lead</label>
+                                <input type="text" class="form-control" id="projectLead" name="projectLead"
+                                    placeholder="Project Leader">
+                            </div>
+                            <div class="mb-3">
+                                <label for="projectLogo" class="form-label">Project Logo</label>
+                                <input class="form-control" type="file" id="projectLogo" name="projectLogo" multiple>
+                            </div>
+                            <div class="deadline-form">
+                                <div class="row g-3 mb-3">
+                                    <div class="col">
+                                        <label for="projectStartDate" class="form-label">Project Start Date</label>
+                                        <input type="date" class="form-control" id="projectStartDate"
+                                            name="projectStartDate">
+                                    </div>
+                                    <div class="col">
+                                        <label for="projectEndDate" class="form-label">Project End Date</label>
+                                        <input type="date" class="form-control" id="projectEndDate"
+                                            name="projectEndDate">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row g-3 mb-3">
+                                <div class="col-sm">
+                                    <label for="priority" class="form-label">Priority</label>
+                                    <select class="form-select" id="priority" name="priority"
+                                        aria-label="Select Priority">
+                                        <option value="Highest" selected>Highest</option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="Low">Low</option>
+                                        <option value="Lowest">Lowest</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description (optional)</label>
+                                <textarea class="form-control" id="description" name="description" rows="3"
+                                    placeholder="Add any extra details about the request"></textarea>
+                            </div>
+                            <div class="modal-footer">
+
+                                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal"
+                                    id="createProjectBtn">Create</button>
+                            </div>
+                        </form>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Create Project Modal -->
+
+
+
+
+        <!-- JavaScript to handle form submission -->
+
+
+
+        <!-- Edit Project-->
+        <!-- Edit Project Modal -->
+        <!-- Edit Project Modal -->
+        <div class="modal fade" id="editproject" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-md modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title fw-bold" id="createprojectlLabel">Edit Project</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="projectName" class="form-label">Project Name</label>
+                            <input type="text" class="form-control" id="projectName" placeholder="Project Name">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Project Category</label>
+                            <select class="form-select" id="projectCategory" aria-label="Select Project Category">
+                                <option value="UI/UX Design">UI/UX Design</option>
+                                <option value="Website Design">Website Design</option>
+                                <option value="Web App Development">Web App Development</option>
+                                <option value="SEO">SEO</option>
+                                <option value="Social Media">Social Media</option>
+                                <option value="Backend Development">Backend Development</option>
+                                <option value="Digital Marketing">Digital Marketing</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Client</label>
+                            <select class="form-select" id="clientsName" aria-label="Select Client">
+                                <option value="">Loading Clients...</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="projectLead" class="form-label">Project Lead</label>
+                            <input type="text" class="form-control" id="projectLead" placeholder="Project Leader">
+                        </div>
+                        <div class="mb-3">
+                            <label for="projectLogo" class="form-label">Project Logo</label>
+                            <input class="form-control" type="file" id="projectLogo">
+                        </div>
+                        <div class="deadline-form">
+                            <div class="row g-3 mb-3">
+                                <div class="col">
+                                    <label for="projectStartDate" class="form-label">Project Start Date</label>
+                                    <input type="date" class="form-control" id="projectStartDate">
+                                </div>
+                                <div class="col">
+                                    <label for="projectEndDate" class="form-label">Project End Date</label>
+                                    <input type="date" class="form-control" id="projectEndDate">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-3 mb-3">
+                            <div class="col-sm">
+                                <label for="priority" class="form-label">Priority</label>
+                                <select class="form-select" id="priority" aria-label="Select Priority">
+                                    <option value="Highest">Highest</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="Low">Low</option>
+                                    <option value="Lowest">Lowest</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description (optional)</label>
+                            <textarea class="form-control" id="description" rows="3"
+                                placeholder="Add any extra details about the request"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="saveProjectChanges">Save</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Edit Project Status Modal -->
+        <!-- Edit Project Status Modal -->
+        <div class="modal fade" id="editStatusModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Update Project Status</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="statusUpdateForm">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="newStatus" class="form-label">Status</label>
+                                <select class="form-select" id="newStatus" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Up Coming">Up Coming </option>
+                                    <option value="On Going UI">On Going UI</option>
+                                    <option value="On Going Dev">On Going Dev</option>
+                                    <option value="Completed">Completed</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="updateStatusBtn">Update</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // When status edit icon is clicked
+                const statusEditIcons = document.querySelectorAll('.status-edit-icon');
+                statusEditIcons.forEach(icon => {
+                    icon.addEventListener("click", function (e) {
+                        e.preventDefault();
+                        const projectId = this.getAttribute("data-project-id");
+                        const currentStatus = this.closest('.d-flex').querySelector('.badge').textContent.trim();
+
+                        // Set current values in modal
+                        const modal = document.querySelector("#editStatusModal");
+                        modal.setAttribute("data-project-id", projectId);
+
+                        // Set current status in dropdown
+                        const statusSelect = document.querySelector("#newStatus");
+                        for (let option of statusSelect.options) {
+                            if (option.value === currentStatus) {
+                                option.selected = true;
+                                break;
+                            }
+                        }
+                    });
+                });
+
+                // Handle status update button click
+                document.getElementById("updateStatusBtn").addEventListener("click", function () {
+                    const modal = document.querySelector("#editStatusModal");
+                    const projectId = modal.getAttribute("data-project-id");
+                    const newStatus = document.querySelector("#newStatus").value;
+
+                    if (!newStatus) {
+                        alert("Please select a status");
+                        return;
+                    }
+
+                    const formData = new FormData();
+                    formData.append("status", newStatus);
+
+                    // Get CSRF token
+                    const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+
+                    // Send update request
+                    fetch(`/projects/${projectId}/update-status/`, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-CSRFToken': csrfToken
+                        }
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                // Close modal and refresh page
+                                const bsModal = bootstrap.Modal.getInstance(modal);
+                                bsModal.hide();
+                                window.location.reload();
+                            } else {
+                                alert('Error updating status: ' + (data.error || 'Unknown error'));
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('Error updating status. Please try again.');
+                        });
+                });
+            });
+        </script>
+        <!-- Delete Project Modal -->
+        <div class="modal fade" id="deleteproject" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Delete Project</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {% csrf_token %}
+                        <p>Are you sure you want to delete this project? This action cannot be undone.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+        <!-- Edit Project-->
+
+
+        <!-- Modal  Delete Folder/ File-->
+
+        <!-- 88888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888 -->
+        <!-- Modal  Delete Folder/ File-->
+    </div>
+
+    <!-- start: template setting, and more. -->
+
+    </div>
+
+    <!-- Jquery Core Js -->
+    <script src="{% static 'assets/bundles/libscripts.bundle.js' %}"></script>
+    <script>
+
+
+
+
+
+
+        // Modify your client loading script in the create project modal
+        document.addEventListener("DOMContentLoaded", function () {
+            // Load clients for create modal
+            const createClientSelect = document.querySelector("#createproject #client-select");
+            if (createClientSelect) {
+                fetch('/clients-list/')
+                    .then(response => response.json())
+                    .then(clients => {
+                        createClientSelect.innerHTML = '<option value="">Select Client</option>';
+
+                        // Add client options
+                        clients.forEach(client => {
+                            const option = document.createElement('option');
+                            option.value = client.id;
+                            option.textContent = client.company_name;
+                            createClientSelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error('Error loading clients:', error));
+            }
+
+            // Handle form submission
+            const createProjectForm = document.getElementById("createProjectForm");
+            if (createProjectForm) {
+                createProjectForm.addEventListener("submit", function (event) {
+                    event.preventDefault();
+
+                    // Validate client selection
+                    const clientSelect = this.querySelector("#client-select");
+                    if (!clientSelect.value) {
+                        alert("Please select a client");
+                        return;
+                    }
+
+                    let formData = new FormData(this);
+
+                    fetch("{% url 'create_project' %}", {
+                        method: "POST",
+                        body: formData,
+                        headers: {
+                            "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value,
+                        },
+                    })
+                        .then(response => {
+                            if (!response.ok) {
+                                return response.json().then(data => {
+                                    throw new Error(JSON.stringify(data));
+                                });
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log("Success:", data);
+                            // Close modal and refresh page on success
+                            const modal = bootstrap.Modal.getInstance(document.getElementById('createproject'));
+                            modal.hide();
+                            window.location.reload();
+                        })
+                        .catch(error => {
+                            console.error("Error:", error);
+                            alert("Error creating project: " + error.message);
+                        });
+                });
+            }
+        });
+        // First, modify the edit button event listener to properly handle form submission
+        // Add this code to your saveButton click handler to validate and handle empty dates
+        // Add this script at the end of your HTML file or in a separate JS file
+        document.addEventListener("DOMContentLoaded", function () {
+            // Save project changes
+            document.querySelector("#saveProjectChanges").addEventListener("click", function (e) {
+                e.preventDefault();
+
+                // Get the form and project ID
+                const form = document.querySelector("#editproject");
+                const projectId = form.getAttribute('data-project-id');
+
+                if (!projectId) {
+                    console.error("Project ID not found");
+                    return;
+                }
+
+                // Create FormData
+                const formData = new FormData();
+                formData.append('name', document.querySelector("#editproject #projectName").value);
+                formData.append('category', document.querySelector("#editproject #projectCategory").value);
+
+                // Get selected client option value (ID)
+                const clientSelect = document.querySelector("#editproject #clientsName");
+                formData.append('client', clientSelect.value);
+
+                formData.append('project_lead', document.querySelector("#editproject #projectLead").value);
+                formData.append('priority', document.querySelector("#editproject #priority").value);
+                formData.append('description', document.querySelector("#editproject #description").value);
+
+                // Handle dates
+                const startDate = document.querySelector("#editproject #projectStartDate").value;
+                const endDate = document.querySelector("#editproject #projectEndDate").value;
+
+                if (startDate) {
+                    formData.append('start_date', startDate);
+                }
+
+                if (endDate) {
+                    formData.append('end_date', endDate);
+                }
+
+                // Handle logo file
+                const logoInput = document.querySelector("#editproject #projectLogo");
+                if (logoInput.files.length > 0) {
+                    formData.append('logo', logoInput.files[0]);
+                }
+
+                // Get CSRF token
+                const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+
+                // Send AJAX request
+                fetch(`/projects/${projectId}/update/`, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRFToken': csrfToken
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Close modal and refresh page
+                            const modal = bootstrap.Modal.getInstance(document.querySelector('#editproject'));
+                            modal.hide();
+                            window.location.reload();
+                        } else {
+                            alert('Error updating project: ' + (data.error || 'Unknown error'));
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Error updating project. Please try again.');
+                    });
+            });
+        });
+        // Add this code right after your Edit Project Modal
+
+        // Delete Project Modal
+        document.addEventListener("DOMContentLoaded", function () {
+            // Set up delete button event listeners
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            deleteButtons.forEach(button => {
+                button.addEventListener("click", function () {
+                    const projectId = this.getAttribute('data-client-id');
+                    document.getElementById('confirmDeleteBtn').setAttribute('data-project-id', projectId);
+                });
+            });
+
+            // Handle confirm delete button click
+            document.getElementById('confirmDeleteBtn').addEventListener("click", function () {
+                const projectId = this.getAttribute('data-project-id');
+                if (!projectId) return;
+
+                // Get CSRF token
+                const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+
+                // Send delete request
+                fetch(`/projects/${projectId}/delete/`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': csrfToken,
+                        'Content-Type': 'application/json'
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Close modal and refresh page
+                            const modal = bootstrap.Modal.getInstance(document.getElementById('deleteproject'));
+                            modal.hide();
+                            window.location.reload();
+                        } else {
+                            alert('Error deleting project: ' + (data.error || 'Unknown error'));
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Error deleting project');
+                    });
+            });
+        });
+        // Add this to your document ready function
+        document.addEventListener("DOMContentLoaded", function () {
+            // For create project form
+            const createEndDateInput = document.querySelector("#createproject #projectEndDate");
+            if (createEndDateInput) {
+                createEndDateInput.addEventListener("change", function () {
+                    calculateDaysLeft(this.value, "#createproject");
+                });
+            }
+
+            // For edit project form
+            const editEndDateInput = document.querySelector("#editproject #projectEndDate");
+            if (editEndDateInput) {
+                editEndDateInput.addEventListener("change", function () {
+                    calculateDaysLeft(this.value, "#editproject");
+                });
+            }
+
+            function calculateDaysLeft(endDateStr, formSelector) {
+                if (!endDateStr) return;
+
+                const endDate = new Date(endDateStr);
+                const today = new Date();
+
+                // Reset time part to compare just dates
+                today.setHours(0, 0, 0, 0);
+                endDate.setHours(0, 0, 0, 0);
+
+                const diffTime = endDate - today;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                if (diffDays < 0) {
+                    // Display in the form if needed
+                    console.log("Project is overdue!");
+                } else {
+                    console.log(`Days left: ${diffDays}`);
+                    // You can display this in the form if needed
+                }
+            }
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+
+            function loadClients(selectElement) {
+                fetch('/clients-list/')
+                    .then(response => response.json())
+                    .then(clients => {
+
+                        selectElement.innerHTML = '<option value="">Select Client</option>';
+
+                        // Add client options
+                        clients.forEach(client => {
+                            const option = document.createElement('option');
+                            option.value = client.id;
+                            option.textContent = client.company_name;
+                            selectElement.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error('Error loading clients:', error));
+            }
+
+            // Load clients for edit modal
+            const editClientSelect = document.querySelector("#editproject #clientsName");
+            if (editClientSelect) {
+                loadClients(editClientSelect);
+            }
+
+            // Handle edit button clicks
+            const editButtons = document.querySelectorAll(".edit-btn");
+            editButtons.forEach(button => {
+                button.addEventListener("click", function () {
+                    // Get project data from data attributes
+                    const projectId = this.getAttribute("data-project-id");
+                    const projectName = this.getAttribute("data-project-name");
+                    const projectCategory = this.getAttribute("data-project-category");
+                    const projectClient = this.getAttribute("data-project-client");
+                    const projectLead = this.getAttribute("data-project-lead");
+                    const startDate = this.getAttribute("data-project-start-date");
+                    const endDate = this.getAttribute("data-project-end-date");
+                    const priority = this.getAttribute("data-project-priority");
+                    const description = this.getAttribute("data-project-description");
+
+                    // Get form elements
+                    const form = document.querySelector("#editproject");
+                    const nameInput = form.querySelector("#projectName");
+                    const categorySelect = form.querySelector("#projectCategory");
+                    const clientSelect = form.querySelector("#clientsName");
+                    const leadInput = form.querySelector("#projectLead");
+                    const startDateInput = form.querySelector("#projectStartDate");
+                    const endDateInput = form.querySelector("#projectEndDate");
+                    const prioritySelect = form.querySelector("#priority");
+                    const descriptionInput = form.querySelector("#description");
+
+                    // Set basic values
+                    nameInput.value = projectName || '';
+                    leadInput.value = projectLead || '';
+                    startDateInput.value = startDate || '';
+                    endDateInput.value = endDate || '';
+                    descriptionInput.value = description || '';
+
+                    // Handle category selection
+                    const categoryOptions = categorySelect.options;
+                    for (let i = 0; i < categoryOptions.length; i++) {
+                        if (categoryOptions[i].text === projectCategory) {
+                            categorySelect.selectedIndex = i;
+                            break;
+                        }
+                    }
+
+                    // Wait for clients to load, then set the correct client
+                    const checkClientOptions = setInterval(() => {
+                        if (clientSelect.options.length > 1) {
+                            const clientOptions = clientSelect.options;
+                            for (let i = 0; i < clientOptions.length; i++) {
+                                if (clientOptions[i].text === projectClient) {
+                                    clientSelect.selectedIndex = i;
+                                    break;
+                                }
+                            }
+                            clearInterval(checkClientOptions);
+                        }
+                    }, 100);
+
+
+                    const priorityOptions = prioritySelect.options;
+                    for (let i = 0; i < priorityOptions.length; i++) {
+                        if (priorityOptions[i].text === priority) {
+                            prioritySelect.selectedIndex = i;
+                            break;
+                        }
+                    }
+
+
+                    form.setAttribute('data-project-id', projectId);
+                });
+            });
+        });
+        document.addEventListener("DOMContentLoaded", function () {
+            // Handle status edit button clicks
+            const statusEditButtons = document.querySelectorAll('.edit-btn[data-bs-target="#editprojectstatus"]');
+            statusEditButtons.forEach(button => {
+                button.addEventListener("click", function () {
+                    // Get project data from data attributes
+                    const projectId = this.getAttribute("data-client-id");
+                    const projectName = this.getAttribute("data-client-name");
+
+                    // Get the current status from the badge text
+                    const statusBadge = this.closest('.d-flex').querySelector('.badge');
+                    const currentStatus = statusBadge ? statusBadge.textContent.trim() : "Unknown";
+
+                    // Set values in the modal
+                    document.getElementById("statusProjectId").value = projectId;
+                    document.getElementById("statusProjectName").value = projectName;
+                    document.getElementById("currentStatus").value = currentStatus;
+
+                    // Pre-select current status in dropdown
+                    const statusSelect = document.getElementById("newStatus");
+                    for (let i = 0; i < statusSelect.options.length; i++) {
+                        if (statusSelect.options[i].value === currentStatus) {
+                            statusSelect.selectedIndex = i;
+                            break;
+                        }
+                    }
+                });
+            });
+
+            // Handle status update button click
+            document.getElementById("updateStatusBtn").addEventListener("click", function () {
+                const projectId = document.getElementById("statusProjectId").value;
+                const newStatus = document.getElementById("newStatus").value;
+
+                if (!projectId || !newStatus) {
+                    alert("Please select a valid status");
+                    return;
+                }
+
+                // Create FormData for the request
+                const formData = new FormData();
+                formData.append('status', newStatus);
+
+                // Get CSRF token
+                const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value;
+
+                // Send AJAX request to update project status
+                fetch(`/projects/${projectId}/update-status/`, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRFToken': csrfToken
+                    }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Close modal and refresh page
+                            const bsModal = bootstrap.Modal.getInstance(document.getElementById('editprojectstatus'));
+                            bsModal.hide();
+                            window.location.reload();
+                        } else {
+                            alert('Error updating project status: ' + (data.error || 'Unknown error'));
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Error updating project status');
+                    });
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+
+    </script>
+    <!-- Jquery Page Js -->
+    <script src="../js/template.js"></script>
+
+</body>
+
+</html>
