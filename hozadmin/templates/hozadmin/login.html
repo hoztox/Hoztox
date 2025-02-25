@@ -1,0 +1,83 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Hoztox Dashboard</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Favicon-->
+    {% load static %}
+
+    <!-- project css file  -->
+    <link rel="stylesheet" href="{% static 'assets/css/my-task.style.min.css' %}">
+</head>
+<body data-mytask="theme-indigo">
+    <div id="mytask-layout">
+        <!-- main body area -->
+        <div class="main px-lg-4 px-md-4">          
+            <!-- Body: Body -->
+            <div class="body d-flex py-3">
+                <div class="container-xxl">
+                    <div class="login-card">
+                        <div class="brand">
+                            <img src="{% static 'assets/images/hoztox-logo.svg' %}">
+                        </div>
+
+                        <form id="loginForm" method="POST" action="{% url 'login' %}">
+
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="name@company.com" autocomplete="email" required>
+                                <div class="error" id="emailError"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+                                <div class="error" id="passwordError"></div>
+                            </div>
+
+                            <div class="remember-forgot">
+                                <div class="remember-me">
+                                    <input type="checkbox" id="remember" name="remember">
+                                    <label for="remember">Remember me</label>
+                                </div>
+                                <a href="#" class="forgot-password">Forgot password?</a>
+                            </div>
+
+                            <button type="submit" class="login-btn" id="loginButton">
+                                Sign in
+                            </button>
+                        </form> 
+                        
+                        <!-- Display Django Messages -->
+                        {% if messages %}
+                        <div class="messages">
+                            {% for message in messages %}
+                            <p class="error">{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %} 
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery Core Js -->
+    <script src="{% static 'assets/bundles/libscripts.bundle.js' %}"></script>
+
+    <!-- Plugin Js -->
+    <script src="{% static 'assets/bundles/apexcharts.bundle.js' %}"></script>
+
+    <!-- Jquery Page Js -->
+    <script src="{% static 'js/template.js' %}"></script>
+    <script src="{% static 'js/page/hr.js' %}"></script>
+</body>
+</html>

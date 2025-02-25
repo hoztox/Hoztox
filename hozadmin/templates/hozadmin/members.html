@@ -70,11 +70,11 @@
                     <div class="h-right d-flex align-items-center mr-5 mr-lg-0 order-1">                      
                         <div class="dropdown user-profile ml-2 ml-sm-3 d-flex align-items-center">
                             <div class="u-info me-2">
-                                <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold">Rasheed</span></p>
-                                <small>Admin Profile</small>
+                                <p class="mb-0 text-end line-height-sm "><span class="font-weight-bold">{{ request.user.username }}</span></p>
+                                <small>{% if request.user.is_superadmin %}Admin Profile{% else %}User Profile{% endif %}</small>
                             </div>
                             <a class="nav-link dropdown-toggle pulse p-0" href="#" role="button" data-bs-toggle="dropdown" data-bs-display="static">
-                                <img class="avatar lg rounded-circle img-thumbnail" src="{% static 'assets/images/Rasheed-12.webp' %}" alt="profile">
+                                <img class="avatar lg rounded-circle img-thumbnail" src="{% static 'assets/images/profile_av.png' %}" alt="profile">
                             </a>
                             <div class="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-end p-0 m-0">
                                 <div class="card border-0 w280">
@@ -82,19 +82,26 @@
                                         <div class="d-flex py-1">
                                             <img class="avatar rounded-circle" src="{% static 'assets/images/profile_av.png' %}" alt="profile">
                                             <div class="flex-fill ms-3">
-                                                <p class="mb-0"><span class="font-weight-bold">Dylan Hunter</span></p>
-                                                <small class="">Dylan.hunter@gmail.com</small>
+                                                <p class="mb-0"><span class="font-weight-bold">{{ request.user.first_name }} {{ request.user.last_name }}</span></p>
+                                                <small class="">{{ request.user.email }}</small>
                                             </div>
                                         </div>
                                         
                                         <div><hr class="dropdown-divider border-dark"></div>
                                     </div>
                                     <div class="list-group m-2 ">
-                                        <a href="task.html" class="list-group-item list-group-item-action border-0 "><i class="icofont-tasks fs-5 me-3"></i>My Task</a>
-                                        <a href="members.html" class="list-group-item list-group-item-action border-0 "><i class="icofont-ui-user-group fs-6 me-3"></i>members</a>
-                                        <a href="ui-elements/auth-signin.html" class="list-group-item list-group-item-action border-0 "><i class="icofont-logout fs-6 me-3"></i>Signout</a>
+                                         
+                                        <a href="{% url 'logout' %}" class="list-group-item list-group-item-action border-0">
+                                            <form method="POST" action="{% url 'logout' %}" id="logout-form">
+                                                {% csrf_token %}
+                                                <button type="submit" class="list-group-item list-group-item-action border-0">
+                                                    <i class="icofont-logout fs-6 me-3"></i>Signout
+                                                </button>
+                                            </form>
+                                        </a>
+                                        
                                         <div><hr class="dropdown-divider border-dark"></div>
-                                        <a href="ui-elements/auth-signup.html" class="list-group-item list-group-item-action border-0 "><i class="icofont-contact-add fs-5 me-3"></i>Add personal account</a>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -118,11 +125,16 @@
                     <!-- main menu Search-->
                     <div class="order-0 col-lg-4 col-md-4 col-sm-12 col-12 mb-3 mb-md-0 ">
                         <div class="input-group flex-nowrap input-group-lg">
-                            <button type="button" class="input-group-text" id="addon-wrapping"><i class="fa fa-search"></i></button>
-                            <input type="search" class="form-control" placeholder="Search" aria-label="search" aria-describedby="addon-wrapping">
-                            <button type="button" class="input-group-text add-member-top" id="addon-wrappingone" data-bs-toggle="modal" data-bs-target="#addUser"><i class="fa fa-plus"></i></button>
+                            <button type="button" class="input-group-text" id="addon-wrapping"><i
+                                    class="fa fa-search"></i></button>
+                            <input type="search" class="form-control" placeholder="Search" aria-label="search"
+                                aria-describedby="addon-wrapping" id="searchInput">
+                            <button type="button" class="input-group-text add-member-top" id="addon-wrappingone"
+                                data-bs-toggle="modal" data-bs-target="#addUser"><i class="fa fa-plus"></i></button>
                         </div>
                     </div>
+
+                    <div id="searchResults" class="position-absolute bg-white shadow-lg rounded-3 mt-1 w-100" style="display:none; z-index: 1000;"></div>
     
                 </div>
             </nav>
@@ -435,6 +447,91 @@
             });
         });
     });
+
+    
+    // Update the search input event listener
+    document.addEventListener("DOMContentLoaded", function() {
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+    
+    searchInput.addEventListener('input', debounce(function() {
+        const searchText = this.value.trim();
+        
+        if (searchText.length > 0) {
+            // Make AJAX call to search endpoint
+            fetch(`/search-emp/?q=${encodeURIComponent(searchText)}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Clear previous results
+                    const employeeContainer = document.querySelector('.row-deck');
+                    const employees = employeeContainer.querySelectorAll('.col');
+                    
+                    employees.forEach(employee => {
+                        const nameElement = employee.querySelector('.teacher-info h6');
+                        const designationElement = employee.querySelector('.light-info-bg');
+                        
+                        if (nameElement && designationElement) {
+                            const name = nameElement.textContent.toLowerCase();
+                            const designation = designationElement.textContent.toLowerCase();
+                            const searchLower = searchText.toLowerCase();
+                            
+                            if (name.includes(searchLower) || designation.includes(searchLower)) {
+                                employee.style.display = '';
+                            } else {
+                                employee.style.display = 'none';
+                            }
+                        }
+                    });
+
+                    // Show no results message if all employees are hidden
+                    const visibleEmployees = Array.from(employees).filter(emp => emp.style.display !== 'none');
+                    const noResultsMessage = document.querySelector('.no-results-message');
+                    
+                    if (visibleEmployees.length === 0) {
+                        if (!noResultsMessage) {
+                            const message = document.createElement('div');
+                            message.className = 'col-12 text-center py-5 no-results-message';
+                            message.innerHTML = '<h4>No employees found matching your search</h4>';
+                            employeeContainer.appendChild(message);
+                        }
+                    } else {
+                        if (noResultsMessage) {
+                            noResultsMessage.remove();
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        } else {
+            // If search is empty, show all employees
+            const employeeContainer = document.querySelector('.row-deck');
+            const employees = employeeContainer.querySelectorAll('.col');
+            employees.forEach(employee => {
+                employee.style.display = '';
+            });
+            
+            // Remove no results message if it exists
+            const noResultsMessage = document.querySelector('.no-results-message');
+            if (noResultsMessage) {
+                noResultsMessage.remove();
+            }
+        }
+    }, 300));
+});
+
+// Debounce function to limit API calls
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func.apply(this, args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
     </script>
 
 <!-- Jquery Page Js -->

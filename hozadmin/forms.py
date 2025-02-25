@@ -74,3 +74,21 @@ class TaskForm(forms.ModelForm):
             'priority': forms.Select(attrs={'class': 'form-select'}),
             
         }
+
+
+class LoginForm(forms.Form):
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'name@company.com',
+            'autocomplete': 'email'
+        })
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter your password',
+            'autocomplete': 'current-password'
+        })
+    )
+    remember_me = forms.BooleanField(required=False)

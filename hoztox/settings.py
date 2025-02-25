@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-x4-1e$_!vqj@qq*%)0qu=5tj&6ubefwfa*+exuw-$-jpl773f@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'hozadmin.middleware.NoCacheMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -52,7 +53,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'hoztox.urls'
-
+ 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -70,7 +71,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'hoztox.wsgi.application'
-
+SESSION_COOKIE_AGE = 1209600   
+SESSION_SAVE_EVERY_REQUEST = True
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases

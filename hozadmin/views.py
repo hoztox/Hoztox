@@ -767,4 +767,134 @@ def home(request):
 
 
 
+def search_project(request):
+    query = request.GET.get('q', '').strip()
+    
+    projects = Project.objects.select_related('client').all()
+    
+    if query:
+        projects = projects.filter(
+            Q(name__icontains=query) |
+            Q(category__icontains=query) |
+            Q(client__company_name__icontains=query)
+        )
+    
+    results = [{
+        'id': project.id,
+        'name': project.name,
+        'category': project.category,
+        'company_name': project.client.company_name if project.client else '',
+        'project_lead': project.project_lead,
+        'status': project.status,
+        'logo_url': project.logo.url if project.logo else None,
+    } for project in projects]
+    
+    return JsonResponse({'results': results}, safe=False)
+
+def search_employee(request):
+    query = request.GET.get('q', '').strip()
+    
+    if query:
+        employees = Employee.objects.filter(
+            Q(name__icontains=query) |
+            Q(employee_id__icontains=query) |
+            Q(designation__icontains=query) |
+            Q(department__icontains=query)
+        )
+    else:
+        employees = Employee.objects.all()
+    
+    results = [{
+        'id': employee.id,
+        'name': employee.name,
+        'employee_id': employee.employee_id,
+        'designation': employee.designation,
+        'department': employee.department,
+        'logo_url': employee.logo.url if employee.logo else None
+    } for employee in employees]
+    
+    return JsonResponse({'results': results})
+
  
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth.models import User
+
+ 
+
+
+# views.py - Add/modify these functions
+
+from django.shortcuts import redirect, render
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
+from django.contrib import messages, auth
+from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import never_cache
+
+@never_cache
+def superadmin_login(request):
+    # If user is already authenticated, redirect to home
+    if request.user.is_authenticated:
+        return redirect("/")
+        
+    if request.method == "POST":
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+        remember_me = request.POST.get("remember") == 'on'
+        
+        try:
+            user = User.objects.get(email=email)
+            if user.is_superuser:
+                user = authenticate(request, username=user.username, password=password)
+                if user:
+                    login(request, user)
+                    
+                    # Set session expiry based on "Remember me" checkbox
+                    if remember_me:
+                        # Session will last for 2 weeks (in seconds)
+                        request.session.set_expiry(1209600)
+                    else:
+                        # Session expires when browser closes
+                        request.session.set_expiry(0)
+                    
+                    # Set a flag in session indicating user has logged in
+                    request.session['is_logged_in'] = True
+                    
+                    return redirect("/")
+                else:
+                    messages.error(request, "Invalid email or password.")
+            else:
+                messages.error(request, "You are not authorized as a superadmin.")
+        except User.DoesNotExist:
+            messages.error(request, "User with this email does not exist.")
+    
+    # Set no-cache headers to prevent browser back button issues
+    response = render(request, "hozadmin/login.html")
+    response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response['Pragma'] = 'no-cache'
+    response['Expires'] = '0'
+    return response
+
+@login_required(login_url='login')
+@never_cache
+def logout(request):
+   
+    request.session.flush()
+    auth.logout(request)
+    messages.success(request, 'You are logged out')
+    
+ 
+    response = redirect('login')
+    response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response['Pragma'] = 'no-cache'
+    response['Expires'] = '0'
+    return response
+
+ 
+@login_required(login_url='login')
+@never_cache
+def your_protected_view(request):
+  
+    return render(request, 'hozadmin/index.html')

@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import *
 from . import views
-
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', home, name='home'),  
@@ -31,7 +31,9 @@ urlpatterns = [
     path('employee/<int:employee_id>/update-bank-info/', views.update_employee_bank_info, name='update-employee-bank-info'),
     path('employee/<int:employee_id>/update-basic-info/', views.update_employee_basic_info, name='update-employee-basic-info'),
     path('task/edit/<int:task_id>/', edit_task, name='edit_task'),
+    path('search-project/', search_project, name='search_project'),
+    path('search-emp/', search_employee, name='search_project'), 
    
-    
-    
+    path('login/', views.superadmin_login , name='login'),
+    path('logout/', views.logout, name='logout'),
 ]

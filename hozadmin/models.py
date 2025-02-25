@@ -135,6 +135,71 @@ class Task(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.project.name}"
+    
 
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.db import models
 
+class MyAccountManager(BaseUserManager):
+    def create_user(self, first_name, last_name, username, email, password=None):
+        if not email:
+            raise ValueError('User must have an email address')
+        if not username:
+            raise ValueError('User must have a username')
 
+        user = self.model(
+            email=self.normalize_email(email),
+            username=username,
+            first_name=first_name,
+            last_name=last_name,
+        )
+        user.is_active = True
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, first_name, last_name, email, username, password):
+        user = self.create_user(
+            email=email,
+            username=username,
+            password=password,
+            first_name=first_name,
+            last_name=last_name,
+        )
+        user.is_admin = True
+        user.is_active = True
+        user.is_staff = True
+        user.is_superuser = True
+        user.save(using=self._db)
+        return user
+
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin, Group, Permission
+from django.db import models
+
+class CustomUser(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(unique=True)
+    username = models.CharField(max_length=150, unique=True)
+    first_name = models.CharField(max_length=150)
+    last_name = models.CharField(max_length=150)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    is_superadmin = models.BooleanField(default=False)
+
+    groups = models.ManyToManyField(
+        Group,
+        related_name="customuser_groups",  # Unique related_name
+        blank=True,
+    )
+    user_permissions = models.ManyToManyField(
+        Permission,
+        related_name="customuser_permissions",  # Unique related_name
+        blank=True,
+    )
+
+    objects = MyAccountManager()
+
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["username", "first_name", "last_name"]
+
+    def __str__(self):
+        return self.email
