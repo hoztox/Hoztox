@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-x4-1e$_!vqj@qq*%)0qu=5tj&6ubefwfa*+exuw-$-jpl773f@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['projects.hoztox.in', 'www.projects.hoztox.in', 'localhost', '127.0.0.1']
+
 
 
 # Application definition
