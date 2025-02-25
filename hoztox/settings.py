@@ -135,6 +135,9 @@ MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = '/media/'
 
 
+# Add this to your settings.py
+CSRF_TRUSTED_ORIGINS = ['https://projects.hoztox.in']
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
