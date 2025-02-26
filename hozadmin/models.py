@@ -6,7 +6,7 @@ class Client(models.Model):
     service = models.CharField(max_length=255, null=True, blank=True)
     logo = models.ImageField(upload_to='client_logos/', null=True, blank=True)
     email = models.EmailField(unique=True, null=True, blank=True)
-    phone = models.CharField(max_length=15, null=True, blank=True)
+    phone = models.CharField(max_length=50, null=True, blank=True)
     address = models.TextField(null =True,blank=True)
     description = models.TextField(blank=True, null=True)
 
