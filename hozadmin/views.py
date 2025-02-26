@@ -893,8 +893,18 @@ def logout(request):
     return response
 
  
-@login_required(login_url='login')
-@never_cache
-def your_protected_view(request):
-  
-    return render(request, 'hozadmin/index.html')
+ 
+
+
+
+@login_required
+@require_POST
+def delete_employee(request, employee_id):
+    employee = get_object_or_404(Employee, id=employee_id)
+    
+    try:
+        # Delete the employee
+        employee.delete()
+        return JsonResponse({'success': True})
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)})

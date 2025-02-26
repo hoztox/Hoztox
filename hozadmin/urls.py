@@ -33,7 +33,7 @@ urlpatterns = [
     path('task/edit/<int:task_id>/', edit_task, name='edit_task'),
     path('search-project/', search_project, name='search_project'),
     path('search-emp/', search_employee, name='search_project'), 
-   
+    path('delete-employee/<int:employee_id>/', views.delete_employee, name='delete_employee'),
     path('login/', views.superadmin_login , name='login'),
     path('logout/', views.logout, name='logout'),
 ]
