@@ -4,7 +4,7 @@ from .models import *
 class ClientForm(forms.ModelForm):
     class Meta:
         model = Client
-        fields = ['contact_person', 'company_name', 'service', 'logo', 'email','address', 'phone', 'description']
+        fields = ['contact_person', 'company_name', 'service', 'logo', 'email','address', 'phone','address', 'description']
 
 class ProjectForm(forms.ModelForm):
     class Meta:

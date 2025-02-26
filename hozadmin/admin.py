@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import * 
 
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ['company_name', 'contact_person', 'email', 'phone']
+    list_display = ['company_name', 'contact_person', 'email', 'phone','address']
     search_fields = ['company_name', 'contact_person']
 admin.site.register(Client)
 

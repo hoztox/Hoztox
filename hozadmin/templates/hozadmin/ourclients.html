@@ -232,6 +232,7 @@
                                                 data-client-description="{{ client.description }}"
                                                 data-client-email="{{ client.email }}"
                                                 data-client-phone="{{ client.phone }}"
+                                                data-client-address="{{ client.address }}"
                                                 data-client-logo="{% if client.logo %}{{ client.logo.url }}{% else %}{% endif %}">
                                                 <i class="icofont-edit text-success"></i>
 
@@ -336,6 +337,11 @@
                                     <div class="invalid-feedback">{{ error }}</div>
                                     {% endfor %}
                                 </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_address" class="form-label">Address</label>
+                                <textarea class="form-control" id="id_address" name="address" rows="3"
+                                    placeholder="Address">{{ form.address.errors }}</textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="id_description" class="form-label">Description (optional)</label>
@@ -459,7 +465,11 @@
                                         placeholder="Phone" value="{{ form.phone.value|default_if_none:'' }}">
                                 </div>
                             </div>
-
+                            <div class="mb-3">
+                                <label for="id_address" class="form-label">Address</label>
+                                <textarea class="form-control" id="id_address" name="address" rows="3"
+                                    placeholder="Address">{{ form.address.value|default_if_none:''}}</textarea>
+                            </div>
                             <!-- Description -->
                             <div class="mb-3">
                                 <label for="id_description" class="form-label">Description (optional)</label>
@@ -502,6 +512,7 @@
                         modal.querySelector("#id_description").value = this.dataset.clientDescription;
                         modal.querySelector("#id_email").value = this.dataset.clientEmail;
                         modal.querySelector("#id_phone").value = this.dataset.clientPhone;
+                        modal.querySelector("#id_address").value = this.dataset.clientAddress;
                     });
                 });
             });
@@ -517,6 +528,7 @@
                         clientDescription: event.currentTarget.getAttribute('data-client-description'),
                         clientEmail: event.currentTarget.getAttribute('data-client-email'),
                         clientPhone: event.currentTarget.getAttribute('data-client-phone'),
+                        clientAddress: event.currentTarget.getAttribute('data-client-address'),
                         clientLogo: event.currentTarget.getAttribute('data-client-logo')
                     };
 
@@ -536,6 +548,7 @@
                         clientDescription: event.currentTarget.getAttribute('data-client-description'),
                         clientEmail: event.currentTarget.getAttribute('data-client-email'),
                         clientPhone: event.currentTarget.getAttribute('data-client-phone'),
+                        clientAddress: event.currentTarget.getAttribute('data-client-address'),
                         clientLogo: event.currentTarget.getAttribute('data-client-logo')
                     };
 
@@ -548,6 +561,7 @@
                     document.getElementById('id_service').value = clientData.clientService;
                     document.getElementById('id_email').value = clientData.clientEmail;
                     document.getElementById('id_phone').value = clientData.clientPhone;
+                    document.getElementById("id_address").value = clientData.clientAddress;
                     document.getElementById('id_description').value = clientData.clientDescription;
 
 
@@ -576,6 +590,7 @@
                         const clientService = this.getAttribute("data-client-service");
                         const clientEmail = this.getAttribute("data-client-email");
                         const clientPhone = this.getAttribute("data-client-phone");
+                        const clientAddress = this.getAttribute("data-client-address");
                         const clientLogo = this.getAttribute("data-client-logo");
 
 
@@ -590,7 +605,7 @@
                         document.getElementById("id_email").value = clientEmail || "";
                         document.getElementById("id_phone").value = clientPhone || "";
 
-
+                        document.getElementById("id_address").value = clientAddress || "";
                         document.querySelector("#editproject form").action = `/client/update/${clientId}/`;
 
 
