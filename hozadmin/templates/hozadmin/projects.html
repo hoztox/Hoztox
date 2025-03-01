@@ -1970,30 +1970,67 @@
  
         document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById('searchInput');
-    const clientList = document.getElementById('clientList');   
-
+    
     searchInput.addEventListener('input', function () {
         const searchText = searchInput.value.toLowerCase().trim();
-
-        // Select all project cards
-        const clients = document.querySelectorAll('.col-xxl-4, .col-xl-4, .col-lg-4, .col-md-12, .col-sm-12');
-
-        clients.forEach(client => {
-            const companyNameElement = client.querySelector('.small.text-muted.fw-bold');  
-            const categoryElement = client.querySelector('h6.mb-0.fw-bold.fs-6.mb-2');  
-
-            if (companyNameElement && categoryElement) {
-                const companyName = companyNameElement.textContent.toLowerCase();
-                const category = categoryElement.textContent.toLowerCase();
-
+        
+        if (searchText === '') {
+            // If search is empty, restore the tab system as normal
+            document.querySelectorAll('.tab-pane').forEach(tab => {
+                const projectCards = tab.querySelectorAll('.col-xxl-4, .col-xl-4, .col-lg-4, .col-md-12, .col-sm-12');
+                projectCards.forEach(card => {
+                    card.style.display = 'block';
+                });
+            });
+            return;
+        }
+        
+        // First, make all project cards in all tabs visible
+        document.querySelectorAll('.tab-pane').forEach(tab => {
+            // Make all tabs active temporarily to allow searching all projects
+            const wasActive = tab.classList.contains('active');
+            if (!wasActive) {
+                tab.classList.add('show', 'active');
+            }
             
-                if (companyName.includes(searchText) || category.includes(searchText)) {
-                    client.style.display = 'block';
-                } else {
-                    client.style.display = 'none';
+            // Search within each tab
+            const projectCards = tab.querySelectorAll('.col-xxl-4, .col-xl-4, .col-lg-4, .col-md-12, .col-sm-12');
+            
+            projectCards.forEach(card => {
+                const companyNameElement = card.querySelector('.small.text-muted.fw-bold');
+                const categoryElement = card.querySelector('h6.mb-0.fw-bold.fs-6.mb-2');
+                
+                if (companyNameElement && categoryElement) {
+                    const companyName = companyNameElement.textContent.toLowerCase().trim();
+                    const category = categoryElement.textContent.toLowerCase().trim();
+                    
+                    if (companyName.includes(searchText) || category.includes(searchText)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
                 }
+            });
+            
+            // Restore original state
+            if (!wasActive) {
+                tab.classList.remove('show', 'active');
             }
         });
+        
+        // Make sure the tab that was active stays active
+        const activeTab = document.querySelector('.nav-link.active');
+        if (activeTab) {
+            // Get the target tab id from href attribute
+            const targetTabId = activeTab.getAttribute('href').substring(1);
+            document.querySelectorAll('.tab-pane').forEach(tab => {
+                if (tab.id === targetTabId) {
+                    tab.classList.add('show', 'active');
+                } else {
+                    tab.classList.remove('show', 'active');
+                }
+            });
+        }
     });
 });
 
